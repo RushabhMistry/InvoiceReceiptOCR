@@ -28,6 +28,7 @@ class KeyValues(BaseModel):
     payment_date: str
     total: str
     currency: str
+    invoice_number: str
 
 # Function to extract text from PDF using PyMuPDF
 def extract_text(pdf_path):
@@ -50,7 +51,8 @@ patterns = {
     "Payment Mode": r"Payment\s*Mode[:\s]*([^\n\r]+)",
     "Payment Date": r"Payment\s*Date[:\s]*(\d{1,2}/\d{1,2}/\d{2,4})",
     "Total": r"Total\s*[:\s]*₹?([\d,]+)",
-    "Currency": r"(?i)(?:Rs\.|₹|INR|USD|\$)"
+    "Currency": r"(?i)(?:Rs\.|₹|INR|USD|\$)",
+    "Invoice Number": r"Invoice\s*Number[:\s]*([\w-]+)"
 }
 
 # Function to convert data to JSON with special handling for float values
@@ -100,4 +102,4 @@ async def process_pdf(file: UploadFile = File(...)):
     return JSONResponse(content=json_safe(key_value_pairs))
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=5000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
