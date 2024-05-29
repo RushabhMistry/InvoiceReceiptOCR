@@ -1,5 +1,6 @@
 fastapi
-tabula
-fitz
-pandas
 uvicorn
+tabula-py
+PyMuPDF
+pandas
+PyPDF2
