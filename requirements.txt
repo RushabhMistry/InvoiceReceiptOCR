@@ -1,0 +1,5 @@
+fastapi
+tabula
+fitz
+pandas
+uvicorn
